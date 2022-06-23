@@ -9,4 +9,3 @@ fetch(`http://localhost:5050/fibonacci/${fibInput.value}`)
  })
 }
 
-
