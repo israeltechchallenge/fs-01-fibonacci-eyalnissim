@@ -1,0 +1,31 @@
+body {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Open Sans', sans-serif;
+    font-style: normal;
+}
+div {
+    display: flex;
+}
+#life-meaning {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    display: flex;
+    align-items: flex-end;
+}
+#input{
+    width: 100px;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number] {
+  -moz-appearance: textfield;
+}
+#larger-than{
+    min-width: 180px;
+    margin: 5px 0px 0px 0px;
+}
