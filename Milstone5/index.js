@@ -22,13 +22,18 @@ function fetchData() {
         largerThan.classList.remove("d-none");
 
     }
-
-    fetch(`http://localhost:5050/fibonacci/${fibInput.value}`)
-        .then(res => res.json())
+const url=`http://localhost:5050/fibonacci/${fibInput.value}`;
+    fetch(url)
+        .then(res =>{
+            if(res.ok) {return res.json()}
+            else {
+                return res.text().than(text=> {throw new error(text)})
+            }})
         .then((data) => {
             spinnerOff();
             document.getElementById("output").innerText = data.result;
-        }).catch((error) => {
+        })
+        .catch((error) => {
             spinnerOff();
             document.getElementById("life-meaning").innerText = "server Error" + error;
             
