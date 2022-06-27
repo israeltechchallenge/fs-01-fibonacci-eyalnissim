@@ -17,17 +17,22 @@ function spinnerOff() {
 
 
 function fetchData() {
-    if (fibInput.value > 50) {
-        spinnerOff()
-        largerThan.classList.remove("d-none");
+    let url=`http://localhost:5050/fibonacci/${fibInput.value}`;
+    document.getElementById("life-meaning").innerText = ``;
+    document.getElementById("output").innerText = ``;
+    largerThan.classList.add("d-none");
 
+    if (fibInput.value > 50) {
+        spinnerOff();
+        largerThan.classList.remove("d-none");
     }
-const url=`http://localhost:5050/fibonacci/${fibInput.value}`;
-    fetch(url)
-        .then(res =>{
+
+    else {
+        fetch(url)
+        .then(res => {
             if(res.ok) {return res.json()}
             else {
-                return res.text().than(text=> {throw new error(text)})
+                return res.text().then(text=> {throw new Error(text)})
             }})
         .then((data) => {
             spinnerOff();
@@ -35,7 +40,8 @@ const url=`http://localhost:5050/fibonacci/${fibInput.value}`;
         })
         .catch((error) => {
             spinnerOff();
-            document.getElementById("life-meaning").innerText = "server Error" + error;
-            
-        });
+                document.getElementById("life-meaning").innerText = `server Error: ${error}`;          
+                });
+    }
+     
 }
