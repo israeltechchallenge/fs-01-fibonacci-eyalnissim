@@ -4,15 +4,16 @@ fibBtn.addEventListener("click", fetchData);
 let fibInput = document.getElementById("input");
 const largerThan = document.getElementById("larger-than");
 const serverErr = document.getElementById("life-meaning");
+const spinner = document.getElementById("spinner");
+
 
 function spinnerOn() {
-    document.getElementById("spinner").innerHTML = `<div class="spinner-border" role="status">
-  <span class="visually-hidden">Loading...</span>
-</div>`;
+    spinner.classList.remove("d-none");
 }
 
 function spinnerOff() {
-    document.getElementById("spinner").innerHTML = ``;
+    spinner.classList.add("d-none");
+    
 }
 
 
@@ -21,7 +22,7 @@ function fetchData() {
     document.getElementById("life-meaning").innerText = ``;
     document.getElementById("output").innerText = ``;
     largerThan.classList.add("d-none");
-
+    spinnerOn();
     if (fibInput.value > 50) {
         spinnerOff();
         largerThan.classList.remove("d-none");
@@ -45,3 +46,5 @@ function fetchData() {
     }
      
 }
+
+
