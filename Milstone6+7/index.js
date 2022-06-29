@@ -1,10 +1,19 @@
 const fibBtn = document.getElementById("fibCaller");
-fibBtn.addEventListener("click", fetchData);
+fibBtn.addEventListener("click", saveCalcu);
 let fibInput = document.getElementById("input");
 const largerThan = document.getElementById("larger-than");
 const serverErr = document.getElementById("life-meaning");
 const spinner = document.getElementById("spinner");
+const checker = document.getElementById("check-box");
 
+function saveCalcu (){
+    if( checker.checked === true){
+        fetchData();  
+    }
+    else {
+        fibonacci();
+    }
+}
 
 function spinnerOn() {
     spinner.classList.remove("d-none");
@@ -15,6 +24,34 @@ function spinnerOff() {
 
 }
 
+function fibonacci() {
+    document.getElementById("life-meaning").innerText = ``;
+    document.getElementById("output").innerText = ``;
+    largerThan.classList.add("d-none");
+    let x = document.getElementById("input").value;
+    spinnerOn();
+    let fibSantenc = " "
+    let y = 0;
+    if (x === 0) {
+        fibSantenc = 0;
+    }
+    else if (x === 1) {
+        fibSantenc = 1;
+    }
+    else {
+        let f1 = 0;
+        let f2 = 1;
+        for (let j = 1; j < x; j++) {
+            y = f1 + f2;
+            f1 = f2;
+            f2 = y;
+        }
+        fibSantenc = y;
+
+    }
+    spinnerOff();
+    document.getElementById("output").innerText = fibSantenc;
+}
 
 function fetchData() {
     spinnerOn();
@@ -47,7 +84,7 @@ function fetchData() {
             });
 
     }
-    
+
 }
 
 window.addEventListener('load', fibRes);
@@ -66,6 +103,7 @@ function fibRes() {
 
         });
 }
+
 
 
 
